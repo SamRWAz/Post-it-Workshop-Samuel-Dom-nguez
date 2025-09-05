@@ -7,6 +7,7 @@ const body = document.body;
 // Array de colores disponibles para las notas (MODIFICADO: expandido de 1 a 3 colores)
 const colors = ['note-yellow', 'note-blue', 'note-pink'];
 
+// Función para crear el elemento de la nota.
 function createNoteElement(text, colorClass) {
     const noteDiv = document.createElement('div');
     noteDiv.classList.add('note', colorClass); 
@@ -28,7 +29,7 @@ function createNoteElement(text, colorClass) {
     saveNotes();
 }
 
-// Event listener para agregar notas (MODIFICADO: agregado color aleatorio y deshabilitación del botón)
+// Event listener para agregar notas (agregado color aleatorio y deshabilitación del botón)
 addButton.addEventListener('click', function() {
     const noteText = noteInput.value.trim();
 
@@ -40,7 +41,7 @@ addButton.addEventListener('click', function() {
         addButton.disabled = true;
     }
 });
-
+// Función para cargar notas guardadas 
 function loadNotes() {
     const storedNotes = localStorage.getItem('notes');
     
@@ -53,6 +54,7 @@ function loadNotes() {
     }
 }
 
+// Función para establecer el tema inicial, si es dark mode, se cambia el texto del botón a claro y viceversa.
 function setInitialTheme() {
     const isDarkMode = localStorage.getItem('isDarkMode') === 'true';
     if (isDarkMode) {
@@ -61,10 +63,12 @@ function setInitialTheme() {
     }
 }
 
+// Event listener para el input de la nota, si el input está vacío, se deshabilita el botón de agregar.
 noteInput.addEventListener('input', () => {
     addButton.disabled = noteInput.value.trim() === '';
 });
 
+// Event listener para el botón de toggle theme, si es dark mode, se cambia el texto del botón a claro y viceversa.
 toggleThemeButton.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
     const isDarkMode = body.classList.contains('dark-mode');
@@ -72,6 +76,7 @@ toggleThemeButton.addEventListener('click', () => {
     toggleThemeButton.textContent = isDarkMode ? 'Modo Claro' : 'Modo Oscuro';
 });
 
+// Event listener para el doble click en una nota, se cambia el texto de la nota a un textarea y se guarda en localStorage.
 notesContainer.addEventListener('dblclick', (event) => {
     const target = event.target;
     if (target.classList.contains('note')) {
@@ -106,7 +111,7 @@ notesContainer.addEventListener('dblclick', (event) => {
     }
 });
 
-// Función para guardar notas en localStorage (AGREGADA: función faltante que causaba errores)
+// Función para guardar notas en localStorage
 function saveNotes() {
     const notes = [];
     const noteElements = notesContainer.querySelectorAll('.note');
@@ -121,6 +126,7 @@ function saveNotes() {
     localStorage.setItem('notes', JSON.stringify(notes));
 }
 
+// Event listener para el click en el botón de eliminar, se elimina la nota y se guarda en localStorage.
 notesContainer.addEventListener('click', (event) => {
     if (event.target.classList.contains('delete-btn')) {
         event.target.parentElement.remove();
@@ -128,12 +134,14 @@ notesContainer.addEventListener('click', (event) => {
     }
 });
 
+// Event listener para el mouseover en una nota, se cambia el shadow de la nota.
 notesContainer.addEventListener('mouseover', (event) => {
     if (event.target.classList.contains('note')) {
         event.target.style.boxShadow = '0 0 15px rgba(0,0,0,0.3)';
     }
 });
 
+// Event listener para el mouseout en una nota, se cambia el shadow de la nota.
 notesContainer.addEventListener('mouseout', (event) => {
     if (event.target.classList.contains('note')) {
         event.target.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
