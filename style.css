@@ -5,21 +5,23 @@ body {
     color: #333; 
     transition: background-color 0.5s, color 0.5s; 
 }
+/*Cambio de colores del modo oscuro*/
 .dark-mode { 
-    background-color: #ff0000; 
-    color: #00fff2; 
+    background-color: #000000; 
+    color: white; 
 }
 #app-container { 
-    max-width: 60px; 
+    max-width: 600px; 
     margin: auto; 
     background: white; 
     padding: 20px; 
-    border-radius: 45px; 
+    border-radius: 8px; 
     box-shadow: 0 0 10px rgba(0,0,0,0.1); 
     transition: background-color 0.5s; 
 }
+/*Cambio de colores del contenedor principal*/
 .dark-mode #app-container { 
-    background-color: #c500f6; 
+    background-color: gray; 
 }
 #new-note-input { 
     width: 80%; 
@@ -66,9 +68,11 @@ body {
     cursor: pointer; 
     color: #dc3545; 
 }
-.note-yellow { background-color: #ffc; }
-.note-blue { background-color: #ccf; }
-.note-pink { background-color: #fcc; }
+
+/*Colores con tonos más vivos*/
+.note-yellow { background-color: lightyellow; }
+.note-blue { background-color: lightblue; }
+.note-pink { background-color: lightpink; }
 #toggle-theme-button { 
     padding: 8px 12px; 
     border: none; 
